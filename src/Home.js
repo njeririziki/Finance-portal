@@ -13,7 +13,8 @@ import Divider from '@material-ui/core/Divider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import IconButton from '@material-ui/core/IconButton'
 
-const drawerWidth= 240;
+const drawerWidth= 260;
+const appbarHeight= 80;
 const useStyles= makeStyles(theme=>({
   root:{
     display:'flex'
@@ -21,7 +22,7 @@ const useStyles= makeStyles(theme=>({
 
  appbar:{
   boxShadow:'none',
-  minHeight:80,
+  Height:appbarHeight,
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -47,10 +48,11 @@ const useStyles= makeStyles(theme=>({
   },
   drawer:{
     zIndex:-1,
-   width: drawerWidth,
+    width: drawerWidth,
    flexShrink:0
   },
   drawerPaper:{
+    marginTop:appbarHeight,
     width: drawerWidth,
   },
   content: {
@@ -71,7 +73,10 @@ const useStyles= makeStyles(theme=>({
     backgroundColor:'#F2F2F2'
   },
    photo:{
-
+   margin :'0%,0%,0%,0%',
+   width:150,
+   height:150,
+   border: '2px solid #000'
    }
 })
 
@@ -95,21 +100,21 @@ const useStyles= makeStyles(theme=>({
       <CssBaseline/>
       <div>
       <Appbar 
-      style ={{backgroundColor:'#00bfa5'}}
+      style ={{backgroundColor:'#26a69a'}}
       className={classes.appbar}>
         <Toolbar className={classes.toolbar}>
-         
-          <Typography
-          style={{fontSize:50, fontFamily:'Julius Sans One',
-           color:'#000000',fontWeight:20}}
-           >
-            Finance Portal
-          </Typography>
+       
           <IconButton
           onClick={toggleDrawer} >
          {open?<Icon.X/>:<Icon.Menu/>}
           </IconButton>
           
+          <Typography
+          style={{fontSize:50, fontFamily:'Julius Sans One',
+           color:'#000000',fontWeight:20}}
+           >
+            Students' Finance Portal
+            </Typography>
          <Button
          variant='contained'
          style ={{backgroundColor:'#b0bec5',fontSize:15, 
@@ -129,15 +134,12 @@ const useStyles= makeStyles(theme=>({
    <Drawer
     open={open}
     variant='persistent'
-    anchor ='right'
+    anchor ='left'
     className={classes.drawer}
     classes={{
       paper: classes.drawerPaper,
     }}
-
     >
-      
-     
         <Icon.ChevronLeft
          onClick={drawerClose}
          style={{display:'flex',justifyContent:'flex-end',minHeight:48}}
@@ -154,6 +156,7 @@ const useStyles= makeStyles(theme=>({
       <ListItem
       button
       key={text}
+      style={{minHeight:30,backgroundColor:'#fffff'}}
       >
         <ListItemText
         primary ={text}
@@ -164,6 +167,7 @@ const useStyles= makeStyles(theme=>({
     ))}
     
      </List>  
+     
     </Drawer>
    </div>
    
@@ -172,23 +176,35 @@ const useStyles= makeStyles(theme=>({
     style={{
       display:'flex',
       minHeight:'100vh',
-      flexDirection:'row',
+      flexDirection:'column',
       alignContent:'center',
       justifyContent:'center',
       backgroundColor:'#fafafa',
       marginLeft:-drawerWidth,
       
     }}>
-      <Icon.XSquare
-      style={{alignSelf:'center'}}/>
+       <p 
+        style={{alignSelf:'center',fontSize:40,
+         fontFamily:'Julius Sans One'}}
+        >Student's profile</p> 
+     <div className={classes.photo}
+      style={{alignSelf:'center'}}
+      >
+       <p 
+        style={{alignSelf:'center',alignContent:'center',fontSize:20,
+         fontFamily:'Courgette',display:'flex',justifyContent:'center'}}
+        >Student's<br/> passport</p> 
+      </div>
+    
       <br/>
     <Typography
    align='center'
-    style={{alignSelf:'center', fontSize:30, fontFamily:'Julius Sans One',
+    style={{alignSelf:'center', fontSize:30, fontFamily:'Courgette',
     color:'#000000',fontWeight:20}}
     >
-      Student Name : Njeri <br/>
-      Student Id:01682
+      Student's Name : Njeri <br/>
+      Student's Id:01682 <br/>
+      Student's Class: Form Three
     </Typography>
     </div> 
     </main>
