@@ -46,8 +46,8 @@ const useStyles= makeStyles(theme=>({
     marginRight: theme.spacing(2),
   },
   drawer:{
+    zIndex:-1,
    width: drawerWidth,
-   backgroundColor:'#b9f6ca',
    flexShrink:0
   },
   drawerPaper:{
@@ -56,14 +56,11 @@ const useStyles= makeStyles(theme=>({
   content: {
     flexGrow: 1,
     marginLeft : - drawerWidth,
-    backgroundColor:'#e1f5fe',
     minHeight: 85,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    }),
-    
-    
+    }), 
   },
   contentShift:{
     transition: theme.transitions.create('margin', {
@@ -72,38 +69,47 @@ const useStyles= makeStyles(theme=>({
     }),
     marginLeft: 0,
     backgroundColor:'#F2F2F2'
-  }
+  },
+   photo:{
+
+   }
 })
 
 )
   const HomePg =()=>{
     const classes= useStyles();
-    const [open,setOpen] =React.useState(true)
+    const [open,setOpen] =React.useState(false)
     function drawerOpen(){
        setOpen(true)
     }
     function drawerClose(){
       setOpen(false)
    }
+   function toggleDrawer(){
+     setOpen(!open)
+   }
 
     return(
     <div className={classes.root}>
       
       <CssBaseline/>
+      <div>
       <Appbar 
       style ={{backgroundColor:'#00bfa5'}}
       className={classes.appbar}>
         <Toolbar className={classes.toolbar}>
-          <Icon.Menu
-          onClick={drawerOpen}
-          />
+         
           <Typography
           style={{fontSize:50, fontFamily:'Julius Sans One',
            color:'#000000',fontWeight:20}}
            >
             Finance Portal
           </Typography>
-         
+          <IconButton
+          onClick={toggleDrawer} >
+         {open?<Icon.X/>:<Icon.Menu/>}
+          </IconButton>
+          
          <Button
          variant='contained'
          style ={{backgroundColor:'#b0bec5',fontSize:15, 
@@ -116,23 +122,27 @@ const useStyles= makeStyles(theme=>({
          
         </Toolbar>
       </Appbar>
+      </div>
+     
       
    <div>
    <Drawer
     open={open}
     variant='persistent'
-    anchor ='left'
+    anchor ='right'
     className={classes.drawer}
     classes={{
       paper: classes.drawerPaper,
     }}
 
     >
-      <IconButton
-      onClick={drawerClose}
-      style={{display:'flex',justifyContent:'flex-end'}}>
-        <Icon.ChevronLeft/>
-      </IconButton>
+      
+     
+        <Icon.ChevronLeft
+         onClick={drawerClose}
+         style={{display:'flex',justifyContent:'flex-end',minHeight:48}}
+        />
+      
       <Typography
           style={{fontSize:30, fontFamily:'Martel',
            color:'#000000',fontWeight:20}}
@@ -147,10 +157,12 @@ const useStyles= makeStyles(theme=>({
       >
         <ListItemText
         primary ={text}
-        />
-        <Divider/>
+        /> 
+         <Divider/>
       </ListItem>
+      
     ))}
+    
      </List>  
     </Drawer>
    </div>
@@ -163,12 +175,16 @@ const useStyles= makeStyles(theme=>({
       flexDirection:'row',
       alignContent:'center',
       justifyContent:'center',
-      backgroundColor:'#e1f5fe',
-      marginLeft:-drawerWidth
+      backgroundColor:'#fafafa',
+      marginLeft:-drawerWidth,
+      
     }}>
+      <Icon.XSquare
+      style={{alignSelf:'center'}}/>
+      <br/>
     <Typography
    align='center'
-    style={{alignSelf:'center', fontSize:30, fontFamily:'Martel',
+    style={{alignSelf:'center', fontSize:30, fontFamily:'Julius Sans One',
     color:'#000000',fontWeight:20}}
     >
       Student Name : Njeri <br/>
