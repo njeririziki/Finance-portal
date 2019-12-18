@@ -11,7 +11,8 @@ import * as Icon from 'react-feather';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import IconButton from '@material-ui/core/IconButton'
+import IconButton from '@material-ui/core/IconButton';
+import profile from './user.svg'
 
 const drawerWidth= 260;
 const appbarHeight= 80;
@@ -186,14 +187,15 @@ const useStyles= makeStyles(theme=>({
        <p 
         style={{alignSelf:'center',fontSize:40,
          fontFamily:'Julius Sans One'}}
-        >Student's profile</p> 
-     <div className={classes.photo}
+        > 
+       Student's profile
+       </p> 
+      
+       <div className={classes.photo}
       style={{alignSelf:'center'}}
       >
-       <p 
-        style={{alignSelf:'center',alignContent:'center',fontSize:20,
-         fontFamily:'Courgette',display:'flex',justifyContent:'center'}}
-        >Student's<br/> passport</p> 
+        <img src={profile} alt=""/>
+      
       </div>
     
       <br/>
@@ -207,9 +209,7 @@ const useStyles= makeStyles(theme=>({
       Student's Class: Form Three
     </Typography>
     </div> 
-    </main>
-   
-      
+    </main>  
     </div>
     )
     }
