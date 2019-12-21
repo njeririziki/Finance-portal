@@ -12,7 +12,8 @@ import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import IconButton from '@material-ui/core/IconButton';
-import profile from './user.svg'
+import profile from './user.svg';
+import clsx from 'clsx';
 
 const drawerWidth= 260;
 const appbarHeight= 80;
@@ -23,7 +24,7 @@ const useStyles= makeStyles(theme=>({
 
  appbar:{
   boxShadow:'none',
-  Height:appbarHeight,
+  
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -48,18 +49,17 @@ const useStyles= makeStyles(theme=>({
     marginRight: theme.spacing(2),
   },
   drawer:{
-    zIndex:-1,
     width: drawerWidth,
    flexShrink:0
   },
   drawerPaper:{
-    marginTop:appbarHeight,
+  
     width: drawerWidth,
   },
   content: {
     flexGrow: 1,
     marginLeft : - drawerWidth,
-    minHeight: 85,
+  
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -102,7 +102,8 @@ const useStyles= makeStyles(theme=>({
       <div>
       <Appbar 
       style ={{backgroundColor:'#26a69a'}}
-      className={classes.appbar}>
+      className={clsx(classes.appbar,
+     { [classes.appbarShift]:open})}>
         <Toolbar className={classes.toolbar}>
        
           <IconButton
@@ -114,7 +115,7 @@ const useStyles= makeStyles(theme=>({
           style={{fontSize:50, fontFamily:'Julius Sans One',
            color:'#000000',fontWeight:20}}
            >
-            Students' Finance Portal
+            Portal
             </Typography>
          <Button
          variant='contained'
@@ -172,7 +173,10 @@ const useStyles= makeStyles(theme=>({
     </Drawer>
    </div>
    
-    <main className={classes.content}>
+    <main 
+     className={clsx(classes.content,
+      { [classes.contentShift]:open})}
+    >
     <div 
     style={{
       display:'flex',
