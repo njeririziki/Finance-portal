@@ -1,224 +1,159 @@
 import React from 'react';
-import { makeStyles} from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button';
-import Appbar from '@material-ui/core/Appbar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import * as Icon from 'react-feather';
-import Drawer from '@material-ui/core/Drawer';
-import Divider from '@material-ui/core/Divider';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import IconButton from '@material-ui/core/IconButton';
-import profile from './user.svg';
-import clsx from 'clsx';
+import MenuIcon from '@material-ui/icons/Menu';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import PocketContent from '../components/PocketMoney';
+import HomeContent from '../components/homeContent';
 
-const drawerWidth= 260;
-const appbarHeight= 80;
-const useStyles= makeStyles(theme=>({
-  root:{
-    display:'flex'
-  },
+const drawerWidth = 240;
 
- appbar:{
-  boxShadow:'none',
-  
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  
- },
- appbarShift:{
-  width : `calc (100% - ${drawerWidth}px)`,
-  marginLeft:-drawerWidth,
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.easeOut,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
- },
-  toolbar: {
-   display:'flex',
-   flexDirection:'row',
-   justifyContent:'space-between',
-   alignItems:'center'
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
   },
-  searchicon:{
+  drawer: {
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
+  appBar: {
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+    },
+  },
+  menuButton: {
     marginRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
   },
-  drawer:{
-    width: drawerWidth,
-   flexShrink:0
-  },
-  drawerPaper:{
-  
+  toolbar: theme.mixins.toolbar,
+  drawerPaper: {
     width: drawerWidth,
   },
   content: {
     flexGrow: 1,
-    marginLeft : - drawerWidth,
+    padding: theme.spacing(3),
+  },
+}));
+
+function ResponsiveDrawer(props) {
+  const { container } = props;
+  const classes = useStyles();
+  const theme = useTheme();
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [selected,setSelected]=React.useState(null);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+  function selectedBtn(){ 
+    setSelected(true)
+  }
+
+  const drawer = (
+    <div>
+      <div className={classes.toolbar} />
+      <Divider />
+      <List>
+        {['Pocket Money','Tuition','Co curriculars'].map((text, index) => (
+          <ListItem 
+          button
+          onClick={selectedBtn}
+           key={text}>
   
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }), 
-  },
-  contentShift:{
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-    backgroundColor:'#F2F2F2'
-  },
-   photo:{
-   margin :'0%,0%,0%,0%',
-   width:150,
-   height:150,
-   border: '2px solid #000'
-   }
-})
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+    
+    </div>
+  );
 
-)
-  const HomePg =()=>{
-    const classes= useStyles();
-    const [open,setOpen] =React.useState(false)
-    function drawerOpen(){
-       setOpen(true)
-    }
-    function drawerClose(){
-      setOpen(false)
-   }
-   function toggleDrawer(){
-     setOpen(!open)
-   }
-
-    return(
+  return (
     <div className={classes.root}>
-      
-      <CssBaseline/>
-      <div>
-      <Appbar 
+      <CssBaseline />
+      <AppBar position="fixed"
       style ={{backgroundColor:'#26a69a'}}
-      className={clsx(classes.appbar,
-     { [classes.appbarShift]:open})}>
-        <Toolbar className={classes.toolbar}>
-       
+      className={classes.appBar}>
+        <Toolbar>
           <IconButton
-          onClick={toggleDrawer} >
-         {open?<Icon.X/>:<Icon.Menu/>}
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            className={classes.menuButton}
+          >
+            <MenuIcon />
           </IconButton>
-          
           <Typography
           style={{fontSize:50, fontFamily:'Julius Sans One',
            color:'#000000',fontWeight:20}}
            >
-            Portal
+           Portal
             </Typography>
-         <Button
-         variant='contained'
-         style ={{backgroundColor:'#b0bec5',fontSize:15, 
-         fontFamily:'Julius Sans One',
-           color:'#000000',fontWeight:20}}
-           >
-         >
-           Log out
-           </Button>
          
         </Toolbar>
-      </Appbar>
-      </div>
-     
-      
-   <div>
-   <Drawer
-    open={open}
-    variant='persistent'
-    anchor ='left'
-    className={classes.drawer}
-    classes={{
-      paper: classes.drawerPaper,
-    }}
-    >
-        <Icon.ChevronLeft
-         onClick={drawerClose}
-         style={{display:'flex',justifyContent:'flex-end',minHeight:48}}
-        />
-      
-      <Typography
-          style={{fontSize:30, fontFamily:'Martel',
-           color:'#000000',fontWeight:20}}
-           >  
-          </Typography>
-     <Divider/>
-     <List>
-    {['Tuition Balance','Pocket Money','Cocurriculars'].map((text)=>(
-      <ListItem
-      button
-      key={text}
-      style={{minHeight:30,backgroundColor:'#fffff'}}
-      >
-        <ListItemText
-        primary ={text}
-        /> 
-         <Divider/>
-      </ListItem>
-      
-    ))}
-    
-     </List>  
-     
-    </Drawer>
-   </div>
-   
-    <main 
-     className={clsx(classes.content,
-      { [classes.contentShift]:open})}
-    >
-    <div 
-    style={{
-      display:'flex',
-      minHeight:'100vh',
-      flexDirection:'column',
-      alignContent:'center',
-      justifyContent:'center',
-      backgroundColor:'#fafafa',
-      marginLeft:-drawerWidth,
-      
-    }}>
-       <p 
-        style={{alignSelf:'center',fontSize:40,
-         fontFamily:'Julius Sans One'}}
-        > 
-       Student's profile
-       </p> 
-      
-       <div className={classes.photo}
-      style={{alignSelf:'center'}}
-      >
-        <img src={profile} alt=""/>
-      
-      </div>
-    
-      <br/>
-    <Typography
-   align='center'
-    style={{alignSelf:'center', fontSize:30, fontFamily:'Courgette',
-    color:'#000000',fontWeight:20}}
-    >
-      Student's Name : Njeri <br/>
-      Student's Id:01682 <br/>
-      Student's Class: Form Three
-    </Typography>
-    </div> 
-    </main>  
+      </AppBar>
+      <nav className={classes.drawer} aria-label="options">
+        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+        <Hidden smUp implementation="css">
+          <Drawer
+            container={container}
+            variant="temporary"
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Hidden>
+        <Hidden xsDown implementation="css">
+          <Drawer
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            variant="permanent"
+            open
+          >
+            {drawer}
+          </Drawer>
+        </Hidden>
+      </nav>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        {selected? <PocketContent/>:<HomeContent/>}  
+      </main>
     </div>
-    )
-    }
- 
- 
+  );
+}
 
- export default HomePg;
-  
+ResponsiveDrawer.propTypes = {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+};
+
+export default ResponsiveDrawer;
