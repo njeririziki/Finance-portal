@@ -1,8 +1,9 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography'
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from 'react-avatar';
 import {makeStyles} from '@material-ui/styles';
 import profile from './user.svg';
+import Njeri from './njeri.jpg'
 import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
@@ -37,12 +38,17 @@ const HomeContent =()=>{
      fontFamily:'Julius Sans One',
     color:'#000000',fontWeight:20}}
     >
-      The  student
+      The financial portal
     </Typography>
           <Box 
           className={classes.largeAvatar}
             >
-          <img src={profile} alt=""/>
+         <Avatar
+         name="Foo Bar"
+         round={true}
+         size= '150'
+         src={Njeri}
+          />
              
           </Box>      
    <Typography
