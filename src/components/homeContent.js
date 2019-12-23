@@ -2,7 +2,6 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography'
 import Avatar from 'react-avatar';
 import {makeStyles} from '@material-ui/styles';
-import profile from './user.svg';
 import Njeri from './njeri.jpg'
 import Box from '@material-ui/core/Box';
 
@@ -54,7 +53,7 @@ const HomeContent =()=>{
    <Typography
    align='center'
     style={{alignSelf:'center', fontSize:30,
-     fontFamily:'Courgette',
+     fontFamily:'Roboto',
     color:'#000000',fontWeight:20}}
     >
       Student's Name :Kariuki Njeri <br/>

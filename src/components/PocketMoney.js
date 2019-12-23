@@ -26,11 +26,19 @@ const PocketMoney =()=>{
       Balance:1,000 Ksh <br/>
                    Limit : 5,000 Ksh <br/>
         Outstanding Amount:2,000 Ksh <br/>
-       top up  via: <br/>
+       top up  via: 
        <Button
        variant='contained'
        style={{backgroundColor:'#349D63'}}
-       >M~pesa</Button>
+       >
+           M~pesa
+       </Button> <br/>
+       <Button
+       variant='contained'
+       style={{backgroundColor:'#00bfa5'}}
+       >
+          iPay
+       </Button>
     </Typography>
     </Container>
     </div>)
