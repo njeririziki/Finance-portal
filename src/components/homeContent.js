@@ -31,9 +31,9 @@ const HomeContent =()=>{
     return(
         <div >
       
-       <Typography
+    <Typography
       align='center'
-     style={{alignSelf:'center', fontSize:30,
+     style={{alignSelf:'center', fontSize:40,
      fontFamily:'Julius Sans One',
     color:'#000000',fontWeight:20}}
     >
@@ -44,8 +44,8 @@ const HomeContent =()=>{
             >
          <Avatar
          name="Foo Bar"
-         round={true}
-         size= '150'
+      
+         size= '200'
          src={Njeri}
           />
              
