@@ -23,7 +23,7 @@ const PocketMoney =()=>{
      fontFamily:'Julius Sans One',
     color:'#000000',fontWeight:20}}
     >
-     <u> Pocket Money </u> 
+     <u> Pocket Money  </u> 
     </Typography>
     <Typography
     align='center'
