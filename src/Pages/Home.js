@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -15,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import PocketContent from '../components/PocketMoney';
 import HomeContent from '../components/homeContent';
+import PocketFire from '../components/Firebase'
 
 const drawerWidth = 240;
 
@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ResponsiveDrawer(props) {
+function Home (props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -60,8 +60,8 @@ function ResponsiveDrawer(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  function selectedBtn(){ 
-    setSelected(true)
+  function changeContent(){
+  
   }
 
   const drawer = (
@@ -69,15 +69,23 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {['Pocket Money','Tuition','Co curriculars'].map((text, index) => (
+        
           <ListItem 
           button
-          onClick={selectedBtn}
-           key={text}>
-  
-            <ListItemText primary={text} />
+          key={0}
+          onClick={()=>setSelected('pocket')}
+           >
+            <ListItemText primary={'Pocket Money'} />
           </ListItem>
-        ))}
+
+          <ListItem 
+          button
+          key={1}
+          onClick={()=>setSelected('home')}
+           >
+            <ListItemText primary={'Tuition'} />
+          </ListItem>
+        
       </List>
       <Divider />
     
@@ -106,7 +114,6 @@ function ResponsiveDrawer(props) {
            >
            Portal
             </Typography>
-         
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="options">
@@ -142,18 +149,14 @@ function ResponsiveDrawer(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {selected? <PocketContent/>:<HomeContent/>}  
+
+        {
+         selected === 'pocket' ? <PocketContent/>
+             : <HomeContent/>
+           }
+        
       </main>
     </div>
   );
 }
-
-ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
-};
-
-export default ResponsiveDrawer;
+export default Home ; 

@@ -6,9 +6,7 @@ import Njeri from './njeri.jpg'
 import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
-  root:{
-   
-    
+  root:{ 
   },
   avatar: {
     margin :'50%,50%,50%,50%',
@@ -31,35 +29,35 @@ const HomeContent =()=>{
     return(
         <div >
       
-    <Typography
-      align='center'
-     style={{alignSelf:'center', fontSize:40,
-     fontFamily:'Julius Sans One',
-    color:'#000000',fontWeight:20}}
-    >
-      The financial portal
-    </Typography>
+          <Typography
+            align='center'
+          style={{alignSelf:'center', fontSize:40,
+          fontFamily:'Julius Sans One',
+          color:'#000000',fontWeight:20}}
+          >
+            The financial portal
+          </Typography>
           <Box 
           className={classes.largeAvatar}
             >
+              <br/>
          <Avatar
          name="Foo Bar"
-      
          size= '200'
          src={Njeri}
-          />
-             
-          </Box>      
-   <Typography
-   align='center'
-    style={{alignSelf:'center', fontSize:30,
-     fontFamily:'Roboto',
-    color:'#000000',fontWeight:20}}
-    >
-      Student's Name :Kariuki Njeri <br/>
-      Student's Id:Ecii/01682 <br/>
-      Student's Class: Four Pearl
-    </Typography>
+          />   
+          </Box>  
+          <br/>    
+        <Typography
+        align='center'
+          style={{alignSelf:'center', fontSize:30,
+          fontFamily:'Julius Sans One',
+          color:'#000000',fontWeight:20}}
+          >
+            Student's Name :Kariuki Njeri <br/>
+            Student's Id:ECII/01682 <br/>
+            Student's Class: Four Pearl
+          </Typography>
     </div>
     )
 }

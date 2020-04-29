@@ -4,8 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import {makeStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button';
-import { Typography } from '@material-ui/core';
-import { nominalTypeHack } from 'prop-types';
+
 
 const useStyle= makeStyles(theme=>({
 root:{
@@ -36,8 +35,9 @@ const PayMenu =()=>{
     }
     const classes= useStyle()
     return(
+        <>
         <div className={classes.root}>
-            <Button
+        <Button
        variant='contained'
        onClick={openMenu}
        style ={{backgroundColor:'#26a69a'}}
@@ -52,7 +52,7 @@ const PayMenu =()=>{
           open={Boolean(anchorEl)}
           onClick={closeMenu}
           anchorOrigin={{vertical:'bottom',horizontal:'right'}}
-          
+          getContentAnchorEl = {null}
           className={classes.menuPaper}
          >
         
@@ -68,13 +68,11 @@ const PayMenu =()=>{
                
                 >
                     PesaPal
-                </MenuItem>
-       
-                
-           
+                </MenuItem> 
          </Menu>
             
         </div>
+        </>
     )
 }
 
