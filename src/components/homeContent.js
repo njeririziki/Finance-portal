@@ -4,6 +4,8 @@ import Avatar from 'react-avatar';
 import {makeStyles} from '@material-ui/styles';
 import Njeri from './njeri.jpg'
 import Box from '@material-ui/core/Box';
+import Firebase from '../config';
+import FileUploader from 'react-firebase-file-uploader'
 
 const useStyles = makeStyles(theme => ({
   root:{ 
@@ -26,6 +28,15 @@ const useStyles = makeStyles(theme => ({
 
 const HomeContent =()=>{
   const classes =useStyles();
+  const [image,setImage] = React.useState(null)
+  const [url,setUrl] =React.useState('')
+
+  const handleUploadSuccess=(filename)=>{
+    setImage(filename)
+  Firebase.storage().ref('images').child(filename)
+  .getDownloadURL()
+  .then(url=> setUrl(url))
+  }
     return(
         <div >
       
@@ -37,16 +48,16 @@ const HomeContent =()=>{
           >
             The financial portal
           </Typography>
-          <Box 
-          className={classes.largeAvatar}
-            >
-              <br/>
-         <Avatar
-         name="Foo Bar"
-         size= '200'
-         src={Njeri}
-          />   
-          </Box>  
+          
+           {image? <Avatar src={url}/> :
+           <FileUploader
+            accept = 'image/*'
+            name='profile'
+           storageRef={Firebase.storage().ref('images')}
+           onUploadError={console.log('Error')}
+           onUploadSuccess={handleUploadSuccess}
+             />}
+             }  
           <br/>    
         <Typography
         align='center'

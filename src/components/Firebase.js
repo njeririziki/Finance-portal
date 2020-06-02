@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 // Just practice for the Everydime expense parts
+//delete it when ready to produce
 const useStyles = makeStyles(theme=>({
   root:{
     marginTop: theme.spacing(8),

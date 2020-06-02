@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Router from './Pages/Router';
+import Home from './Pages/Home'
 //import Firebase from './components/Firebase'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
 
-<Router/>
+<Home/>
 , 
 document.getElementById('root'));
 
