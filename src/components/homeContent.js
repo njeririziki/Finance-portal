@@ -48,7 +48,14 @@ const HomeContent =()=>{
           >
             The financial portal
           </Typography>
-          
+          <Avatar
+          align='center'
+          alt="Njeri" 
+          src= {Njeri}
+          variant='circle'
+          className={classes.largeAvatar}
+          />
+          <br/>
            {image? <Avatar src={url}/> :
            <FileUploader
             accept = 'image/*'
@@ -57,7 +64,7 @@ const HomeContent =()=>{
            onUploadError={console.log('Error')}
            onUploadSuccess={handleUploadSuccess}
              />}
-             }  
+               
           <br/>    
         <Typography
         align='center'
@@ -77,10 +84,4 @@ const HomeContent =()=>{
  export default HomeContent;
 
 // <img src={profile} alt=""/>
-/**    <Avatar
-          align='center'
-          alt="Njeri" 
-          src="/static/images/avatar/1.jpg"
-          variant='circle'
-          className={classes.largeAvatar}
-          /> */
+/**  */
